@@ -1,4 +1,4 @@
-package cond.ex;
+package cond.test;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 나머지 경우 "F"를 출력하는 코드를 `if-else`문으로 작성하세요.
  */
 public class Test03 {
-  
+
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     System.out.println("학생의 점수를 입력하시오: ");

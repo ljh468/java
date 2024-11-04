@@ -12,7 +12,7 @@ package loop.test;
 public class Test05 {
 
   public static void main(String[] args) {
-    int levels = 5;
+    int levels = 4;
 
     for (int i = 1; i <= levels; i++) {
       for (int j = 1; j <= levels - i; j++) {
@@ -22,7 +22,8 @@ public class Test05 {
         System.out.print("*");
       }
       System.out.println();
-      if (i == 5) break;
+      // 5번째 줄이면 for문 종료
+      if (i == levels) break;
     }
   }
 }

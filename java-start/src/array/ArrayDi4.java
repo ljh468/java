@@ -3,9 +3,10 @@ package array;
 public class ArrayDi4 {
 
   public static void main(String[] args) {
-    // 2x3 2차원 배열을 만든다.
+    // 10x10 2차원 배열을 만든다.
     int[][] arr = new int[10][10];
 
+    // 순서대로 1씩 증가하는 값으로 초기화
     int i = 1;
     for (int row = 0; row < arr.length; row++) {
       for (int column = 0; column < arr[row].length; column++) {
@@ -13,6 +14,7 @@ public class ArrayDi4 {
       }
     }
 
+    // 2차원 배열 출력
     for (int row = 0; row < arr.length; row++) {
       for (int column = 0; column < arr[row].length; column++) {
         System.out.print(arr[row][column] + " ");

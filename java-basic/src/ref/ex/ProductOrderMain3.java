@@ -40,8 +40,8 @@ public class ProductOrderMain3 {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     System.out.print("입력할 주문의 개수를 입력하세요: ");
-    int n = scanner.nextInt();
-    scanner.nextLine();
+    int n = scanner.nextInt(); // n + "\n" (개행문자가 같이 들어옴)
+    scanner.nextLine(); // 개행문자 제거 (입력 버퍼를 비우기 위함)
 
     ProductOrder[] orders = new ProductOrder[n];
     for (int i = 0; i < orders.length; i++) {
@@ -55,7 +55,7 @@ public class ProductOrderMain3 {
 
       System.out.print("수량: ");
       int quantity = scanner.nextInt();
-      scanner.nextLine(); // 입력 버퍼를 비우기 위한 코드
+      scanner.nextLine(); // 개행문자 제거 (입력 버퍼를 비우기 위함)
 
       orders[i] = createOrder(productName, price, quantity);
     }

@@ -1,20 +1,22 @@
 package ref.test;
 
+import java.util.Arrays;
+
 public class Library {
+
+  private static final int DEFAULT_CAPACITY = 10;
 
   private Book[] books;
 
   private int bookCount;
 
   public Library() {
-    this.books = new Book[10];
+    this.books = new Book[DEFAULT_CAPACITY];
     this.bookCount = 0;
   }
 
   private void expandArray() {
-    Book[] newBooks = new Book[books.length * 2];
-    System.arraycopy(books, 0, newBooks, 0, books.length);
-    this.books = newBooks;
+    this.books = Arrays.copyOf(books, books.length * 2);
   }
 
   public void addBook(Book newBook) {

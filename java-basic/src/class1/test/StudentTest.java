@@ -13,7 +13,10 @@ public class StudentTest {
 
     System.out.println("### 학생 정보 ###");
     for (Student student : students) {
-      System.out.println("이름: " + student.getName() + ", 나이: " + student.getAge() + ", 등급: " + student.getGrade());
+      System.out.println(String.format("이름: %s, 나이: %d, 등급: %s",
+                                       student.getName(),
+                                       student.getAge(),
+                                       student.getGrade()));
     }
 
   }

@@ -35,7 +35,7 @@ public class Library {
         return book;
       }
     }
-    System.out.println("해당 제목의 책이 존재하지 않습니다.");
+    System.out.println("해당 제목의 도서가 존재하지 않습니다.");
     return null;
   }
 

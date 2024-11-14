@@ -29,7 +29,7 @@ public class Library {
     bookCount++;
   }
 
-  public Book searchByTitle(String title) throws IllegalStateException {
+  public Book searchByTitle(String title) {
     for (Book book : books) {
       if (nonNull(book) && book.isTitle(title)) {
         return book;

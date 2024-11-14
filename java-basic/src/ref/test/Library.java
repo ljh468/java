@@ -2,6 +2,8 @@ package ref.test;
 
 import java.util.Arrays;
 
+import static java.util.Objects.nonNull;
+
 public class Library {
 
   private static final int DEFAULT_CAPACITY = 10;
@@ -27,20 +29,19 @@ public class Library {
     bookCount++;
   }
 
-  public Book searchByTitle(String title) {
+  public Book searchByTitle(String title) throws IllegalStateException {
     for (Book book : books) {
-      if (book.getTitle().equalsIgnoreCase(title)) {
+      if (nonNull(book) && book.isTitle(title)) {
         return book;
       }
     }
+    System.out.println("해당 제목의 책이 존재하지 않습니다.");
     return null;
   }
 
   public void printBooks() {
     for (int i = 0; i < bookCount; i++) {
-      System.out.println(String.format("제목 = %s, 가격 = %d",
-                                       books[i].getTitle(),
-                                       books[i].getPrice()));
+      System.out.println(books[i]);
     }
   }
 }

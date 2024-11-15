@@ -17,7 +17,8 @@ public class LibraryManager3 {
     System.out.println();
 
     System.out.println("도서('객체지향의사실과오해')를 검색합니다.");
-    Book book = library.searchByTitle("객체지향의사실과오해");
+    Book book = library.searchByTitle("객체지향의사실과오해")
+                       .orElseThrow(() -> new IllegalStateException("검색한 도서가 존재하지 않습니다."));
     System.out.println("검색한 도서: " + book);
     System.out.println();
 
@@ -37,12 +38,16 @@ public class LibraryManager3 {
     library.checkOutBook("2222");
     System.out.println();
 
-    System.out.println("이미 대출한 도서번호('2222')를 대출합니다.");
+    System.out.println("도서번호('2222')를 대출합니다.");
     library.checkOutBook("2222");
     System.out.println();
 
     System.out.println("대출 가능한 도서 목록을 출력합니다.");
     library.printAvailableBooks();
+    System.out.println();
+
+    System.out.println("도서번호('2222')를 반납합니다.");
+    library.returnBook("2222");
     System.out.println();
 
     System.out.println("도서번호('2222')를 반납합니다.");

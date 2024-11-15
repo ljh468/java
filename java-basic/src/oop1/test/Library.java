@@ -37,7 +37,6 @@ public class Library {
         return Optional.of(book);
       }
     }
-    System.out.println("검색한 도서가 존재하지 않습니다.");
     return Optional.empty();
   }
 

@@ -45,18 +45,12 @@ public class Book {
   }
 
   // 도서 대출 상태로 설정하는 메서드
-  public void checkout() throws IllegalStateException {
-    if (isCheckedOut) {
-      throw new IllegalStateException("이미 대출된 도서입니다.");
-    }
+  public void checkout() {
     isCheckedOut = true;
   }
 
   // 도서 반납 상태로 설정하는 메서드
-  public void returnBook() throws IllegalStateException {
-    if (!isCheckedOut) {
-      throw new IllegalStateException("이 도서는 대출 상태가 아닙니다.");
-    }
+  public void returnBook() {
     isCheckedOut = false;
   }
 
@@ -81,7 +75,7 @@ public class Book {
         "제목='" + title + '\'' +
         ", 저자='" + author + '\'' +
         ", 도서번호='" + isBn + '\'' +
-        ", 대출 유무='" + isCheckedOut + '\'' +
+        ", 대출유무='" + isCheckedOut + '\'' +
         '}';
   }
 }

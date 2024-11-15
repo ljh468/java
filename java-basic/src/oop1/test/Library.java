@@ -20,7 +20,9 @@ public class Library {
       System.out.println("이미 등록된 도서입니다.");
       return false;
     }
-    return this.books.add(newBook);
+    books.add(newBook);
+    System.out.println("도서가 등록되었습니다: " + newBook);
+    return true;
   }
 
   // 모든 도서 조회
@@ -32,50 +34,61 @@ public class Library {
   }
 
   // 제목으로 도서 검색
-  Optional<Book> searchByTitle(String title) {
-    for (Book book : this.books) {
-      if (book.matchesTitle(title)) {
-        return Optional.of(book);
-      }
-    }
-    return Optional.empty();
+  public Optional<Book> searchByTitle(String title) {
+    return books.stream()
+                .filter(book -> book.matchesTitle(title))
+                .findFirst();
   }
 
-  // 도서번호로 도서 검색
-  Optional<Book> searchByIsBn(String isBn) {
-    for (Book book : this.books) {
-      if (book.matchesIsBn(isBn)) {
-        return Optional.of(book);
-      }
-    }
-    return Optional.empty();
+  // 고유번호로 도서 검색
+  public Optional<Book> searchByIsBn(String isBn) {
+    return books.stream()
+                .filter(book -> book.matchesIsBn(isBn))
+                .findFirst();
   }
 
   // 도서 삭제 (removeIf를 사용)
   void deleteByIsBn(String isBn) {
-    Iterator<Book> iterator = books.iterator();
-    while (iterator.hasNext()) {
-      Book book = iterator.next();
-
-      if (book.matchesIsBn(isBn)) {
-        if (book.isCheckedOut()) {
-          System.out.println("대출 중인 도서는 삭제할 수 없습니다.");
-          return;
-        }
-
-        iterator.remove();
-        System.out.println("도서(" + book.getTitle() + ")가 삭제되었습니다.");
-        return;
-      }
+//    Iterator<Book> iterator = books.iterator();
+//    while (iterator.hasNext()) {
+//      Book book = iterator.next();
+//
+//      if (book.matchesIsBn(isBn)) {
+//        if (book.isCheckedOut()) {
+//          System.out.println("대출 중인 도서는 삭제할 수 없습니다.");
+//          return;
+//        }
+//
+//        iterator.remove();
+//        System.out.println("도서(" + book.getTitle() + ")가 삭제되었습니다.");
+//        return;
+//      }
+//    }
+//
+//    System.out.println("도서를 찾을 수 없습니다.");
+    Optional<Book> optionalBook = searchByIsBn(isBn);
+    if (optionalBook.isEmpty()) {
+      System.out.println("도서를 찾을 수 없습니다.");
+      return;
     }
 
-    System.out.println("도서를 찾을 수 없습니다.");
+    Book book = optionalBook.get();
+    if (book.isCheckedOut()) {
+      System.out.println("대출 중인 도서는 삭제할 수 없습니다.");
+      return;
+    }
+
+    books.remove(book);
+    System.out.println("도서가 삭제되었습니다: " + book);
   }
 
   // 도서 대출
   void checkOutBook(String isBn) {
     try {
       Book book = searchByIsBn(isBn).orElseThrow(() -> new IllegalStateException("검색한 도서가 존재하지 않습니다."));
+      if (book.isCheckedOut()) {
+        throw new IllegalStateException("이미 대출된 도서입니다.");
+      }
       book.checkout();
       System.out.println("도서가 대출되었습니다: " + book);
     } catch (IllegalStateException illegalStateException) {
@@ -87,6 +100,9 @@ public class Library {
   void returnBook(String isBn) {
     try {
       Book book = searchByIsBn(isBn).orElseThrow(() -> new IllegalStateException("검색한 도서가 존재하지 않습니다."));
+      if (!book.isCheckedOut()) {
+        throw new IllegalStateException("이 도서는 대출 상태가 아닙니다.");
+      }
       book.returnBook();
       System.out.println("도서가 반납되었습니다: " + book);
     } catch (IllegalStateException illegalStateException) {

@@ -20,12 +20,12 @@ public class Library {
     books = new Book[booksCapacity];
   }
 
-  public Book addBook(String title, String author, int publicationYear) throws IllegalStateException {
+  public boolean addBook(String title, String author, int publicationYear) throws IllegalStateException {
     if (books.length > bookCount) {
       Book newBook = new Book(title, author, publicationYear);
       books[bookCount] = newBook;
       bookCount++;
-      return newBook;
+      return true;
     }
     throw new IllegalStateException("라이브러리에 도서를 추가할 공간이 부족합니다.");
   }

@@ -1,7 +1,6 @@
 package oop1.test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,37 +48,17 @@ public class Library {
 
   // 도서 삭제 (removeIf를 사용)
   void deleteByIsBn(String isBn) {
-//    Iterator<Book> iterator = books.iterator();
-//    while (iterator.hasNext()) {
-//      Book book = iterator.next();
-//
-//      if (book.matchesIsBn(isBn)) {
-//        if (book.isCheckedOut()) {
-//          System.out.println("대출 중인 도서는 삭제할 수 없습니다.");
-//          return;
-//        }
-//
-//        iterator.remove();
-//        System.out.println("도서(" + book.getTitle() + ")가 삭제되었습니다.");
-//        return;
-//      }
-//    }
-//
-//    System.out.println("도서를 찾을 수 없습니다.");
-    Optional<Book> optionalBook = searchByIsBn(isBn);
-    if (optionalBook.isEmpty()) {
-      System.out.println("도서를 찾을 수 없습니다.");
-      return;
-    }
-
-    Book book = optionalBook.get();
-    if (book.isCheckedOut()) {
-      System.out.println("대출 중인 도서는 삭제할 수 없습니다.");
-      return;
-    }
-
-    books.remove(book);
-    System.out.println("도서가 삭제되었습니다: " + book);
+    this.searchByIsBn(isBn).ifPresentOrElse(
+        book -> {
+          if (book.isCheckedOut()) {
+            System.out.println("대출 중인 도서는 삭제할 수 없습니다.");
+            return;
+          }
+          books.remove(book);
+          System.out.println("도서가 삭제되었습니다: " + book);
+        },
+        () -> System.out.println("도서를 찾을 수 없습니다.")
+    );
   }
 
   // 도서 대출

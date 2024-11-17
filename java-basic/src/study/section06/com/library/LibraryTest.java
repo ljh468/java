@@ -1,7 +1,7 @@
-package study.section06.library;
+package study.section06.com.library;
 
-import study.section06.library.books.Book;
-import study.section06.library.users.User;
+import study.section06.com.library.books.Book;
+import study.section06.com.library.users.User;
 
 public class LibraryTest {
 

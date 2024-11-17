@@ -1,6 +1,6 @@
-package study.section06.example;
+package study.section06.com.example;
 
-import static study.section06.example.utility.MathHelper.add;
+import static study.section06.com.example.utility.MathHelper.add;
 
 public class UtilityTest {
 

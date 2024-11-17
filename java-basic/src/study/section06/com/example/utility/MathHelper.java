@@ -1,4 +1,4 @@
-package study.section06.example.utility;
+package study.section06.com.example.utility;
 
 public class MathHelper {
 

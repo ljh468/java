@@ -1,4 +1,4 @@
-package study.section06.library.books;
+package study.section06.com.library.books;
 
 public class Book {
 
@@ -20,14 +20,6 @@ public class Book {
     return title;
   }
 
-  public String getAuthor() {
-    return author;
-  }
-
-  public String getIsbn() {
-    return isbn;
-  }
-
   public boolean isCheckedOut() {
     return isCheckedOut;
   }
@@ -40,7 +32,13 @@ public class Book {
     this.isCheckedOut = false;
   }
 
-  public void print() {
-    System.out.println("도서{제목= " + title + ", 저자= " + author + ", 도서고유번호: " + isbn + "}");
+  @Override
+  public String toString() {
+    return "도서{" +
+        "제목='" + title + '\'' +
+        ", 저자='" + author + '\'' +
+        ", 도서고유번호='" + isbn + '\'' +
+        ", 대출유무=" + isCheckedOut +
+        '}';
   }
 }

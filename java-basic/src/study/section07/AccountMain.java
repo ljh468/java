@@ -22,11 +22,11 @@ public class AccountMain {
     try {
       System.out.println("### 비밀번호 변경요청 ###");
       account.requestPasswordChange("password_123", "New_Password123");
-      System.out.println("비밀번호가 성공적으로 변경되었습니다.");
       System.out.println();
 
       System.out.println("### 잘못된 비밀번호 변경요청 ###");
       account.requestPasswordChange("Invalid_Password", "New_Password456");
+      System.out.println();
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }

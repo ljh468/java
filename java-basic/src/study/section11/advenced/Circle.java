@@ -12,4 +12,5 @@ public class Circle extends Shape {
   protected double calculateAreas() {
     return Math.PI * radius * radius;
   }
+
 }

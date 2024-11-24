@@ -19,7 +19,7 @@ public class PayMain2 {
 
       System.out.print("결제 금액을 입력하세요:");
       int amount = scanner.nextInt();
-      scanner.nextLine();
+      scanner.nextLine(); // 남은 개행문자 제거
 
       payService.processPay(payOption, amount);
 

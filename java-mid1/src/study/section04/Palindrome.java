@@ -17,13 +17,10 @@ public class Palindrome {
     int end = 0;   // 가장 긴 팰린드롬 끝 인덱스
 
     for (int i = 0; i < input.length(); i++) {
-      System.out.println("i = " + i);
       // 홀수 길이 팰린드롬 확장
       int len1 = expandAroundCenter(input, i, i);
-      System.out.println("len1 = " + len1);
       // 짝수 길이 팰린드롬 확장
       int len2 = expandAroundCenter(input, i, i + 1);
-      System.out.println("len2 = " + len2);
 
       // 두 길이 중 더 긴 팰린드롬 선택
       int maxLength = Math.max(len1, len2);

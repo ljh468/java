@@ -9,8 +9,8 @@ public class Palindrome {
   }
 
   public static String solution(String input) {
-    if (input == null || input.length() < 1) {
-      return "";
+    if (input == null || input.length() <= 1) {
+      return input;
     }
 
     int start = 0; // 가장 긴 팰린드롬 시작 인덱스

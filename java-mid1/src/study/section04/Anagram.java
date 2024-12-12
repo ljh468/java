@@ -18,8 +18,8 @@ public class Anagram {
     Map<Character, Integer> str1Map = new HashMap<>();
     Map<Character, Integer> str2Map = new HashMap<>();
 
-    str1 = str1.toLowerCase();
-    str2 = str2.toLowerCase();
+    str1 = str1.toLowerCase().replaceAll("\\s+", "");
+    str2 = str2.toLowerCase().replaceAll("\\s+", "");
 
     if (str1.length() != str2.length()) {
       return false;

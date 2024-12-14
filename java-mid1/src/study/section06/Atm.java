@@ -29,18 +29,18 @@ public class Atm {
     return new TransactionResult(TransactionType.WITHDRAW, amount, member, null);
   }
 
-  private TransactionResult processTransfer(Member sender, Member recipient, double amount) {
-    if (recipient == null || sender.equals(recipient)) {
+  private TransactionResult processTransfer(Member member, Member targetMember, double amount) {
+    if (targetMember == null || member.equals(targetMember)) {
       throw new IllegalArgumentException("송금 대상자가 유효하지 않습니다.");
     }
 
-    BankAccount senderAccount = sender.getBankAccount().withdraw(amount);
-    sender.updateBankAccount(senderAccount);
+    BankAccount account = member.getBankAccount().withdraw(amount);
+    member.updateBankAccount(account);
 
-    BankAccount recipientAccount = recipient.getBankAccount().deposit(amount);
-    recipient.updateBankAccount(recipientAccount);
+    BankAccount targetAccount = targetMember.getBankAccount().deposit(amount);
+    targetMember.updateBankAccount(targetAccount);
 
-    return new TransactionResult(TransactionType.TRANSFER, amount, sender, recipient);
+    return new TransactionResult(TransactionType.TRANSFER, amount, member, targetMember);
   }
 
 }

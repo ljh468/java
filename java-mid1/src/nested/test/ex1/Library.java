@@ -41,6 +41,7 @@ public class Library {
   }
 
   // 정적 중첩 클래스
+  // `Book` 클래스는 `Library` 내부에서만 사용된다.
   private static class Book {
 
     private String title;

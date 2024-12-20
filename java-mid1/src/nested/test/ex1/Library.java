@@ -24,13 +24,16 @@ public class Library {
   }
 
   public void addBook(String title, String author) {
-    if (bookCount < books.length) {
-      Book newBook = new Book(title, author);
-      books[bookCount++] = newBook;
-      System.out.println("책을 저장합니다. 도서 제목: " + title + ", 저자: " + author);
-    } else {
+    // 검증 로직을 먼저 처리하고 정상로직을 처리
+    if (bookCount >= books.length) {
       System.out.println("도서관의 저장 공간이 부족합니다. 도서 제목: " + title + ", 저자: " + author);
+      return;
     }
+
+    // 정상 로직을 처리
+    Book newBook = new Book(title, author);
+    books[bookCount++] = newBook;
+    System.out.println("책을 저장합니다. 도서 제목: " + title + ", 저자: " + author);
   }
 
   public void showBooks() {

@@ -1,4 +1,4 @@
-package generic;
+package generic.animal;
 
 public class Cat extends Animal {
 

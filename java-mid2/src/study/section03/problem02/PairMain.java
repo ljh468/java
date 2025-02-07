@@ -1,4 +1,9 @@
-package study.section03;
+package study.section03.problem02;
+
+import study.section03.problem01.Book;
+import study.section03.problem01.Device;
+import study.section03.problem01.Goods;
+import study.section03.problem01.Item;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,6 +26,9 @@ public class PairMain {
     Pair<Order, List<Item>> orderPair = Pair.of(new Order(1), items);
 
     System.out.println("First() = " + orderPair.getFirst());
-    System.out.println("Second() = " + orderPair.getSecond());
+    System.out.println("Second() = ");
+    for (Item item : orderPair.getSecond()) {
+      System.out.println("item = " + item);
+    }
   }
 }

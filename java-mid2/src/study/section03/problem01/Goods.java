@@ -1,4 +1,4 @@
-package study.section03;
+package study.section03.problem01;
 
 public class Goods extends Item {
 

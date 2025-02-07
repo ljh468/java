@@ -1,4 +1,4 @@
-package study.section03;
+package study.section03.problem02;
 
 import java.util.Objects;
 
@@ -42,6 +42,7 @@ public class Pair<S, T> {
     return Objects.hash(first, second);
   }
 
+  @Override
   public String toString() {
     return String.format("%s->%s", first, second);
   }

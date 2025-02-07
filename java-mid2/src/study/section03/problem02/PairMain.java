@@ -25,9 +25,13 @@ public class PairMain {
 
     Pair<Order, List<Item>> orderPair = Pair.of(new Order(1), items);
 
-    System.out.println("First() = " + orderPair.getFirst());
-    System.out.println("Second() = ");
-    for (Item item : orderPair.getSecond()) {
+    System.out.println("First(): " + orderPair.getFirst());
+    System.out.println("Second():");
+    printItems(orderPair.getSecond());
+  }
+
+  private static void printItems(List<Item> items) {
+    for (Item item : items) {
       System.out.println("item = " + item);
     }
   }

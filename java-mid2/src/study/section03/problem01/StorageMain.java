@@ -46,7 +46,6 @@ public class StorageMain {
 
     System.out.println("Device 창고:");
     printItems(deviceStorage);
-    System.out.println();
   }
 
   // 와일드카드를 활용한 아이템 목록 출력

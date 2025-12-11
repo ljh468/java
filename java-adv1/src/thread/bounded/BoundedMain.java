@@ -11,14 +11,15 @@ public class BoundedMain {
     public static void main(String[] args) {
 
         // 1. BoundedQueue 선택
-        BoundedQueueV1 queue = new BoundedQueueV1(2);
+        // BoundedQueue queue = new BoundedQueueV1(2);
+        BoundedQueue queue = new BoundedQueueV2(2);
 
         // 2. 생산자, 소비자 실행 순서 선택 (반드시 하나만 선택)
         producerFirst(queue); // 생산자 먼저 실행
         // consumerFirst(queue); // 소비자 먼저 실행
     }
 
-    private static void producerFirst(BoundedQueueV1 queue) {
+    private static void producerFirst(BoundedQueue queue) {
         log("== [생산자 먼저 실행] 시작, " + queue.getClass().getSimpleName() + " ==");
 
         List<Thread> threads = new ArrayList<>();

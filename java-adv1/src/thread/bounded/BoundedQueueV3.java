@@ -33,7 +33,7 @@ public class BoundedQueueV3 implements BoundedQueue {
         queue.offer(data);
         // 소비자 깨우기
         log("[put] 생산자 데이터 저장, notify() 호출");
-        notify(); // 대기하고 있는 쓰레드, WAITING -> BLOCKED (락을 획득하기 전이기 때문에)
+        notify(); // 대기하고 있는 쓰레드(WAITING)가 깨어남 -> BLOCKED (락을 획득하기 전이기 때문에)
     }
 
     @Override

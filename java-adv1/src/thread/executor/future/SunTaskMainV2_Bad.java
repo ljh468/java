@@ -8,21 +8,23 @@ import java.util.concurrent.Future;
 
 import static util.MyLogger.log;
 
-public class SunTaskMainV2 {
+public class SunTaskMainV2_Bad {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         SumTask task1 = new SumTask(1, 50);
         SumTask task2 = new SumTask(51, 100);
 
+        // Future를 잘못 활용한 예
+        ExecutorService es = Executors.newFixedThreadPool(2);
+
         long startTime = System.currentTimeMillis();
 
-        ExecutorService es = Executors.newFixedThreadPool(2);
-        Future<Integer> future1 = es.submit(task1);
-        Future<Integer> future2 = es.submit(task2);
+        Future<Integer> future1 = es.submit(task1); // non-blocking
+        Integer sum1 = future1.get();               // blocking, 2초 대기
 
-        Integer sum1 = future1.get();
-        Integer sum2 = future2.get();
+        Future<Integer> future2 = es.submit(task2); // non-blocking
+        Integer sum2 = future2.get();               // blocking, 2초 대기
 
         long endTime = System.currentTimeMillis();
         log("작업에 걸린 시간: " + (endTime - startTime) / 1_000.0 + "초"); // 나누기 1000
@@ -35,11 +37,11 @@ public class SunTaskMainV2 {
         log("END");
         es.close();
         /**
-         * [pool-1-thread-2] 작업시작
          * [pool-1-thread-1] 작업시작
          * [pool-1-thread-1] 작업완료 result = 1275
+         * [pool-1-thread-2] 작업시작
          * [pool-1-thread-2] 작업완료 result = 3775
-         * [     main] 작업에 걸린 시간: 2.023초
+         * [     main] 작업에 걸린 시간: 4.022초
          * [     main] task1.result=1275
          * [     main] task2.result=3775
          * [     main] task1 + task2 = 5050
